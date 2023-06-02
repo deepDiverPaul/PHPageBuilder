@@ -134,7 +134,9 @@ class WebsiteManager implements WebsiteManagerContract
     public function renderOverview()
     {
         $pageRepository = new PageRepository;
-        $pages = $pageRepository->getAll();
+        $pages = array_filter($pageRepository->getAll(),function($page) {
+            return $page->getLayout() !== 'sitemap';
+        });
 
         $viewFile = 'overview';
         require __DIR__ . '/resources/layouts/master.php';
@@ -149,7 +151,7 @@ class WebsiteManager implements WebsiteManagerContract
     {
         $action = isset($page) ? 'edit' : 'create';
         $theme = phpb_instance('theme', [
-            phpb_config('theme'), 
+            phpb_config('theme'),
             phpb_config('theme.active_theme')
         ]);
 

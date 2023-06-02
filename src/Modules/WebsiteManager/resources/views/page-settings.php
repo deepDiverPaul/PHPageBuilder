@@ -40,7 +40,7 @@ $pageTranslations = $page ? $page->getTranslations() : [];
                         <select class="form-control" id="layout" name="layout" required>
                             <?php
                             $value = phpb_field_value('layout', $page);
-                            foreach ($theme->getThemeLayouts() as $layout):
+                            foreach (array_filter($theme->getThemeLayouts(),function($l) {return $l->getSlug() !== 'sitemap';}) as $layout):
                                 if ($layout->getSlug() === $value):
                                     echo '<option value="' . phpb_e($layout->getSlug()) . '" selected>' . phpb_e($layout->getTitle()) . '</option>';
                                 else:
