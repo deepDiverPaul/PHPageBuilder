@@ -33,6 +33,7 @@ return [
         'page-updated' => 'Página acyualizada correctamente',
         'page-deleted' => 'Página eliminada',
 
+        'files' => 'Files',
         'settings' => 'Ajustes',
         'website-languages' => 'Idiomas del sitio',
         'languages-selector-placeholder' => 'Selecciona uno o más idiomas',

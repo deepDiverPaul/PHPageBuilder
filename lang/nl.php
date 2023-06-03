@@ -33,6 +33,7 @@ return [
         'page-updated' => 'Pagina wijziging opgeslagen',
         'page-deleted' => 'Pagina verwijderd',
 
+        'files' => 'Files',
         'settings' => 'Instellingen',
         'website-languages' => 'Website talen',
         'languages-selector-placeholder' => 'Selecteer één of meerdere talen',

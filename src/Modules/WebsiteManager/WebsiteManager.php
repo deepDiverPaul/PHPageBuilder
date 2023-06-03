@@ -7,6 +7,7 @@ use PHPageBuilder\Contracts\WebsiteManagerContract;
 use PHPageBuilder\Extensions;
 use PHPageBuilder\Repositories\PageRepository;
 use PHPageBuilder\Repositories\SettingRepository;
+use PHPageBuilder\Repositories\UploadRepository;
 
 class WebsiteManager implements WebsiteManagerContract
 {
@@ -137,6 +138,9 @@ class WebsiteManager implements WebsiteManagerContract
         $pages = array_filter($pageRepository->getAll(),function($page) {
             return $page->getLayout() !== 'sitemap';
         });
+
+        $filesRepository = new UploadRepository;
+        $files = $filesRepository->getAll();
 
         $viewFile = 'overview';
         require __DIR__ . '/resources/layouts/master.php';

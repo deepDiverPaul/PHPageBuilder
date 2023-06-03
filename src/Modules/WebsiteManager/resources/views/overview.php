@@ -2,6 +2,7 @@
 $pagesTabActive = ! isset($_GET['tab']) || $_GET['tab'] === 'pages' ? 'active' : '';
 $menusTabActive = isset($_GET['tab']) && $_GET['tab'] === 'menus' ? 'active' : '';
 $settingsTabActive = isset($_GET['tab']) && $_GET['tab'] === 'settings' ? 'active' : '';
+$filesTabActive = isset($_GET['tab']) && $_GET['tab'] === 'files' ? 'active' : '';
 ?>
 <div class="py-5 text-center">
     <h2><?= phpb_trans('website-manager.title') ?></h2>
@@ -11,13 +12,16 @@ $settingsTabActive = isset($_GET['tab']) && $_GET['tab'] === 'settings' ? 'activ
     <div class="col-12">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link <?= phpb_e($pagesTabActive) ?>" data-toggle="tab" href="#pages"><?= phpb_trans('website-manager.pages') ?></a>
+                <a class="nav-link <?= phpb_e($pagesTabActive) ?>" href="?tab=pages"><?= phpb_trans('website-manager.pages') ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= phpb_e($menusTabActive) ?>" data-toggle="tab" href="#menus"><?= phpb_trans('website-manager.menus') ?></a>
+                <a class="nav-link <?= phpb_e($menusTabActive) ?>" href="?tab=menus"><?= phpb_trans('website-manager.menus') ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= phpb_e($settingsTabActive) ?>" data-toggle="tab" href="#settings"><?= phpb_trans('website-manager.settings') ?></a>
+                <a class="nav-link <?= phpb_e($filesTabActive) ?>" href="?tab=files"><?= phpb_trans('website-manager.files') ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= phpb_e($settingsTabActive) ?>" href="?tab=settings"><?= phpb_trans('website-manager.settings') ?></a>
             </li>
         </ul>
 
@@ -91,6 +95,64 @@ $settingsTabActive = isset($_GET['tab']) && $_GET['tab'] === 'settings' ? 'activ
                 <h4 class="mb-3"><?= phpb_trans('website-manager.menus') ?></h4>
 
             </div>
+            <div id="files" class="tab-pane <?= phpb_e($filesTabActive) ?>">
+
+                <h4 class="mb-3"><?= phpb_trans('website-manager.files') ?></h4>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="custom-file">
+                            <input id="fileupload" type="file" name="fileupload" class="custom-file-input" onchange="uploadFile()" onselect="uploadFile()">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="d-flex flex-wrap " style="gap:1rem;">
+                <?php
+                foreach ($files as $file) :
+                ?>
+                        <div class="position-relative">
+                            <img src="<?= phpb_e($file->getUrl()) ?>" alt="<?= phpb_e($file->public_id) ?>" class="img-thumbnail" style="max-height: 10rem;">
+                            <div class="position-absolute" style="top:2px;right:2px;">
+                                <button onclick="deleteFile('<?= phpb_e($file->public_id) ?>')" class="btn btn-danger btn-sm mb-2">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                <?php
+                endforeach;
+                ?>
+                </div>
+
+                <script>
+                  async function uploadFile() {
+                    let formData = new FormData();
+                    formData.append("files", fileupload.files[0]);
+                    await fetch('<?= phpb_url('pagebuilder', ['action' => 'upload', 'page' => '1']) ?>', {
+                      method: "POST",
+                      body: formData
+                    }).then(() => {
+                      location.reload();
+                    }).catch(() => {alert('An Error occured.')});
+                  }
+                  async function deleteFile(id) {
+                    let formData = new FormData();
+                    formData.append("id", id);
+                    await fetch('<?= phpb_url('pagebuilder', ['action' => 'upload_delete', 'page' => '1']) ?>', {
+                      method: "POST",
+                      body: formData
+                    }).then(() => {
+                      location.reload();
+                    }).catch(() => {alert('An Error occured.')});
+                  }
+                </script>
+
+            </div>
             <div id="settings" class="tab-pane <?= phpb_e($settingsTabActive) ?>">
 
                 <h4 class="mb-3"><?= phpb_trans('website-manager.settings') ?></h4>
@@ -103,3 +165,12 @@ $settingsTabActive = isset($_GET['tab']) && $_GET['tab'] === 'settings' ? 'activ
         </div>
     </div>
 </div>
+
+<script>
+  document.querySelectorAll('a[data-toggle="tab"]').forEach(el => {
+  el.addEventListener('shown.bs.tab', function (e) {
+      console.log(e.target) // newly activated tab
+    })
+  })
+
+</script>
