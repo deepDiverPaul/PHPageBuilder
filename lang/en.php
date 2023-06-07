@@ -35,10 +35,13 @@ return [
 
         'files' => 'Files',
         'settings' => 'Settings',
+        'required' => 'Required',
         'website-languages' => 'Website languages',
         'languages-selector-placeholder' => 'Select one or more languages',
         'save-settings' => 'Save settings',
         'settings-updated' => 'Settings successfully updated',
+        'save-menus' => 'Save menus',
+        'menus-updated' => 'Menus updated',
         'pagebuilder-block-images' => 'Pagebuilder block thumbnails',
         'render-thumbs' => 'Render Thumbnails'
     ],

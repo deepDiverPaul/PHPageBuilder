@@ -35,10 +35,13 @@ return [
 
         'files' => 'Dateien',
         'settings' => 'Einstellungen',
+        'required' => 'Pflichtfeld',
         'website-languages' => 'Website Sprachen',
         'languages-selector-placeholder' => 'Wähle eine oder mehr Sprachen aus',
         'save-settings' => 'Einstellungen speichern',
-        'settings-updated' => 'Einstellungn aktualisiert',
+        'settings-updated' => 'Einstellungen aktualisiert',
+        'save-menus' => 'Menus speichern',
+        'menus-updated' => 'Menus aktualisiert',
         'pagebuilder-block-images' => 'Seiteneditor Vorschaubilder',
         'render-thumbs' => 'Vorschaubilder generieren'
     ],

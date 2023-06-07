@@ -35,10 +35,13 @@ return [
 
         'files' => 'Files',
         'settings' => 'Instellingen',
+        'required' => 'Required',
         'website-languages' => 'Website talen',
         'languages-selector-placeholder' => 'Selecteer één of meerdere talen',
         'save-settings' => 'Instellingen opslaan',
         'settings-updated' => 'Instellingen opgeslagen',
+        'save-menus' => 'Save menus',
+        'menus-updated' => 'Menus updated',
         'pagebuilder-block-images' => 'Pagebuilder blok afbeeldingen',
         'render-thumbs' => 'Blok afbeeldingen genereren',
     ],

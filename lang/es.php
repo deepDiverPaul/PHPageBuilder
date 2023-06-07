@@ -35,10 +35,13 @@ return [
 
         'files' => 'Files',
         'settings' => 'Ajustes',
+        'required' => 'Required',
         'website-languages' => 'Idiomas del sitio',
         'languages-selector-placeholder' => 'Selecciona uno o más idiomas',
         'save-settings' => 'Guardar ajustes',
         'settings-updated' => 'Ajustes actualizados correctamente',
+        'save-menus' => 'Save menus',
+        'menus-updated' => 'Menus updated',
         'pagebuilder-block-images' => 'Listado de bloques',
         'render-thumbs' => 'Mostrar Miniaturas',
     ],
